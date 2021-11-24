@@ -17,27 +17,24 @@ public class MuzStream {
 
         SongReader reader = new SongReader("src/test.txt",allSongs);
 
-        ArrayList<Song> songs = new ArrayList<>();
-        organiseSongs(playlistCap,songs,allSongs);
 
-        PlayList playList = new PlayList(songs);
+        PlayList playList = new PlayList(playlistCap,allSongs);
 
 
-        while(noFilling >= 0){
+        while(noFilling >= 0 || ! playList.isEmpty()){
             System.out.println("PlayList: "+playList);
 
             Song played = playList.play();
 
             addToTopK(played);
             addPlayTime(played);
-            songs.remove(played);
 
             System.out.println("Playing " + played.presentSong());
 
-            double currentCapacityPercent = (double) songs.size() / playlistCap;
+            double currentCapacityPercent = (double) playList.size() / playlistCap;
             if(currentCapacityPercent <= ((double) playlistLimit)/100 && !playList.isEmpty()){
 
-                playList = refill(playlistCap,playList,songs,allSongs);
+                refill(playlistCap,playList,allSongs);
                 noFilling--;
             }
 
@@ -51,48 +48,18 @@ public class MuzStream {
     }
 
     /**
-     * Helper method to organise all songs from the ArrayList according to the full capacity of the {@code playList}
-     * @param capacity full capacity that the playlist can hold
-     * @param songs Organised songs to be added to the ArrayList (To be added later into {@code playList})
-     * @param allSongs All songs obtained from the request music file
-     */
-    private static void organiseSongs(int capacity, ArrayList<Song> songs, ArrayList<Song> allSongs){
-        Iterator<Song> iterator = allSongs.iterator();
-        int i = 1;
-        while (iterator.hasNext() && i <= capacity){
-            Song song = iterator.next();
-
-            if (songs.contains(song)){
-                int index = songs.indexOf(song);
-                Song toChange = songs.get(index);
-                toChange.higherPriority();
-                i--;
-            } else{
-                songs.add(song);
-            }
-
-            iterator.remove();
-            i++;
-        }
-
-    }
-
-    /**
      * Helper method to refill the playlist
      * @param fullCapacity Full capacity that the playlist can hold
      * @param playList The current playlist
-     * @param songs organised songs to be added into playlist
      * @param allSongs Leftover songs to be potentially added to playList
      * @return A new playlist refilled back to the full capacity
      */
-    private static PlayList refill(int fullCapacity,PlayList playList,ArrayList<Song> songs,ArrayList<Song> allSongs){
+    private static void refill(int fullCapacity,PlayList playList,ArrayList<Song> allSongs){
         System.out.println("Refill");
-        organiseSongs(fullCapacity-playList.size(),songs,allSongs);
-
 
         presentTopK(topK.size());
-        return new PlayList(songs);
-      //  playList.orangiseSongs(fullCapacity- playList.size(),allSongs);
+
+        playList.orangiseSongs(fullCapacity- playList.size(),allSongs);
     }
 
     /**
