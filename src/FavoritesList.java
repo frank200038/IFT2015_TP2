@@ -1,6 +1,5 @@
 
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.lang.Iterable;
 import java.lang.IllegalArgumentException;
@@ -26,9 +25,6 @@ public class  FavoritesList<E> {
         public int getCount() { return this.count; }
         public E getValue() { return this.value; }
         public void increment() { this.count++; }
-//    	public int compareTo( Item<E> other ) {
-//    	    return this.value.compareTo( other.getValue() );
-//    	}
     } //----- end inner class Item
     PositionalList<Item<E>> list = new LinkedPositionalList<>(); // the item list
     public FavoritesList() {} // construct initially empty list
@@ -48,7 +44,7 @@ public class  FavoritesList<E> {
     protected void moveUp( Position<Item<E>> p ) {
         int cnt = this.count( p ); // get count at Position p
         Position<Item<E>> walk = p;
-        while( walk != list.first() && this.count( this.list.before( walk ) ) < cnt )
+        while( walk != list.first() && this.count( this.list.before( walk ) ) <= cnt )
             walk = this.list.before( walk ); // found smaller count ahead of item
         if( walk != p )
             this.list.addBefore( walk, this.list.remove( p ) );

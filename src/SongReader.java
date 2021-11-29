@@ -23,7 +23,6 @@ public class SongReader  {
     // getter for the file name
     public String getFileName() { return this.fileName; }
 
-
     /**
      * Constructor with file name and trackList arguments
      * Uses the Track constructor with data line.
