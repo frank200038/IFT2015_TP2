@@ -5,9 +5,8 @@
 <b> Professor </b>: François Major
 </div>
 
-# Details
+# Description
 
-<b> Description </b>
 <div>
 You are developing a music streaming application, <code>`MuzStream`</code>. One of the features is a play
 queue (referred to later as the playlist), much like Spotify's, where the songs that have been
