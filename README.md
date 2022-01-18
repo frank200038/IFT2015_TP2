@@ -1,9 +1,8 @@
 # IFT2015 Devoir 2
 <div>
-<b> Course </b>: IFT2015 - Data Structure 
-
-<b> Professor </b>: François Major  
-<b> Language used:</b> Java
+<b> Course </b>: IFT2015 - Data Structure <br>
+<b> Professor </b>: François Major  <br>
+<b> Language used:</b> Java <br>
 <b> Main Data Structure Used </b> (Except auxiliary ones): Apatable Priority Queue in Heap  
 </div>
 
