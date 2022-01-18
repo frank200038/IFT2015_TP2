@@ -3,6 +3,10 @@
 <b> Course </b>: IFT2015 - Data Structure 
 
 <b> Professor </b>: François Major
+  
+<b> Language used:</b> Java
+  
+<b> Main Data Structure Used </b> (Except auxiliary ones): Apatable Priority Queue in Heap  
 </div>
 
 # Description
